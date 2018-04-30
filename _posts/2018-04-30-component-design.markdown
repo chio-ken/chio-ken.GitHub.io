@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "谈谈最近项目中的组件设计"
+title:      "谈谈最近项目中的组件设计 「译」"
 subtitle:   "HTML, CSS, JavaScript, component, front-end"
 date:       2018-04-30
 author:     "Chou"
@@ -8,7 +8,7 @@ header-img: "img/post-bg-js-version.jpg"
 tags:
     - 前端开发
     - JavaScript
-    - 日语翻译
+    - 日语译文
     - 生活
     - 知乎
 ---
