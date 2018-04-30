@@ -1,6 +1,6 @@
 # Site settings
-title: Your Blog
-SEOTitle: 你的博客 | Your Blog
+title: ChouKen Blog
+SEOTitle: 张健的博客 | ChouKen Blog
 header-img: img/home-bg.jpg
 email: chioken@outlook.com
 description: ""
@@ -12,8 +12,8 @@ baseurl: "/chio-ken.github.io"         # for example, '/blog' if your blog hoste
 
 # SNS settings
 RSS: false
-#weibo_username:     huxpro
-#zhihu_username:     huxpro
+weibo_username:     3789530690
+zhihu_username:     zhang-jian-37-39
 github_username:    chio-ken
 #twitter_username:  huxpro
 #facebook_username:  huxpro
@@ -68,8 +68,8 @@ kramdown:
 
 # Sidebar settings
 sidebar: true                           # whether or not using Sidebar.
-sidebar-about-description: "写写代码，做做设计，看看产品。世界那么大，多玩玩看看。"
-sidebar-avatar: /img/avatar-hux.jpg      # use absolute URL, seeing it's used in both `/` and `/about/`
+sidebar-about-description: "写写代码，玩玩滑板，好好生活。"
+sidebar-avatar: /img/avatar-chouken.jpeg      # use absolute URL, seeing it's used in both `/` and `/about/`
 
 
 
@@ -84,17 +84,5 @@ friends: [
     {
         title: "Hux Blog",
         href: "http://huangxuan.me"
-    },{
-        title: "Foo",
-        href: "#"
-    },{
-        title: "Bar",
-        href: "#"
-    },{
-        title: "Example Friends",
-        href: "#"
-    },{
-        title: "It helps SEO",
-        href: "#"
     }
 ]
