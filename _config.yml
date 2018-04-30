@@ -6,7 +6,7 @@ email: chioken@outlook.com
 description: ""
 keyword: ""
 url: "http://chioken.com"              # your host, for absolute URL
-baseurl: "/chio-ken.github.io"         # for example, '/blog' if your blog hosted on 'host/blog'
+baseurl: ""         # for example, '/blog' if your blog hosted on 'host/blog'
 
 
 
