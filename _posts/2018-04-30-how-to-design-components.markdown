@@ -7,10 +7,7 @@ author:     "Chou"
 header-img: "img/post-bg-js-version.jpg"
 tags:
     - 前端开发
-    - JavaScript
     - 日语译文
-    - 生活
-    - 知乎
 ---
 
 随着以各种组件库为基础的React,Vue等前端框架的普及，如今的前端可以说是变成了面向组件开发的前端，是不是在组件的设计过程中遇到了很多的困难呢。
