@@ -2,7 +2,7 @@
 title: Your Blog
 SEOTitle: 你的博客 | Your Blog
 header-img: img/home-bg.jpg
-email: huxpro@gmail.com
+email: chioken@outlook.com
 description: ""
 keyword: ""
 url: "http://chioken.com"              # your host, for absolute URL
@@ -12,11 +12,11 @@ baseurl: "/chio-ken.github.io"         # for example, '/blog' if your blog hoste
 
 # SNS settings
 RSS: false
-weibo_username:     huxpro
-zhihu_username:     huxpro
-github_username:    huxpro
+#weibo_username:     huxpro
+#zhihu_username:     huxpro
+github_username:    chio-ken
 #twitter_username:  huxpro
-facebook_username:  huxpro
+#facebook_username:  huxpro
 
 
 
@@ -50,19 +50,19 @@ kramdown:
 #disqus_username: _your_disqus_short_name_
 
 # Duoshuo settings
-duoshuo_username: huxblog
+#duoshuo_username: huxblog
 # Share component is depend on Comment so we can NOT use share only.
-duoshuo_share: true                     # set to false if you want to use Comment without Sharing
+#duoshuo_share: true                     # set to false if you want to use Comment without Sharing
 
 
 
 
 # Analytics settings
 # Baidu Analytics
-ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
+#ba_track_id: 4cc1f2d8f3067386cc5cdb626a202900
 # Google Analytics
-ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
-ga_domain: huangxuan.me
+#ga_track_id: 'UA-49627206-1'            # Format: UA-xxxxxx-xx
+#ga_domain: huangxuan.me
 
 
 
