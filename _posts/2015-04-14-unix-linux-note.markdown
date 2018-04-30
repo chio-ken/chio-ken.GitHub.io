@@ -10,6 +10,7 @@ tags:
     - Unix
 	- Linux
 	- 生活
+	- 知乎
 ---
 
 > This document is not completed and will be updated anytime.
