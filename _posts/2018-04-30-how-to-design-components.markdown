@@ -53,7 +53,7 @@ GUI基本上存在于PC、手机等设备的画面上，在其中包括了很多
 
 常见的原子设计图 ▼ 
 
-![1_j1P0pjQtl36QJavv8lHdyw.png](https://camo.qiitausercontent.com/eeba4ade8249948c264ad49bced48bd8e1cb0e5d/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135303536392f37336666633433612d613138312d666164392d613136652d6639623839343437356638352e706e67)
+![java-javascript](/img/in-post/how-to-design-components/Atomic-Design_Picture.png)
 
 * Atom（原子） - UI的最小単位。在功能上不能再进一步划分的部分，比如按钮和文本等。
 * Molecule（分子） - 由Atom组成的元素，如检索框。
@@ -77,11 +77,7 @@ GUI基本上存在于PC、手机等设备的画面上，在其中包括了很多
 
 像下面的例子中，创建了一个具有“更改用户名”和“连接外部服务”这两个功能的组件。
 
-
-
-![ã¹ã¯ãªã¼ã³ã·ã§ãã 2018-04-01 13.33.52.png](https://camo.qiitausercontent.com/d095b20e5d17cac818ddd2e1fc9f068eacfa5e4f/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135303536392f65373231376539632d383837332d326538382d383062632d6132353065396561303038332e706e67)
-
-
+​          ![java-javascript](/img/in-post/how-to-design-components/example-for-single-responsiblity-rule.png)
 
 接下来，在用到这个组件的页面中，经常会有“我想要颠倒「用户名」和「外部服务」的顺序”、“我想要在「用户名」和「外部服务」之间加个”图标更改按钮“等等的需求。
 
@@ -95,11 +91,7 @@ GUI基本上存在于PC、手机等设备的画面上，在其中包括了很多
 
 例如，Qiita的标题部分，有社区相关的下拉菜单、通知、跳转到我的页面的按钮等很多的功能。
 
-
-
-![ã¹ã¯ãªã¼ã³ã·ã§ãã 2018-04-01 13.29.34.png](https://camo.qiitausercontent.com/c2c75ff724877a5ebc6f3152fb919f64f6fe5a02/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135303536392f66653163636261372d323632642d343438302d316331342d3466636462663339313264642e706e67)
-
-
+![java-javascript](/img/in-post/how-to-design-components/title-of-Qiita.png)
 
 然而，这些并不是由Header组件本身实现的功能，是包含在Header中的单独的分子或原子实现了的功能。
 
@@ -131,7 +123,7 @@ Header仅仅负责这些单独分子或原子的布局。
 
 例如，存在多个下面这样的 icon 组件。
 
-![ã¹ã¯ãªã¼ã³ã·ã§ãã 2018-03-25 12.34.50.png](https://camo.qiitausercontent.com/47c5f03c602562be6a0f9f21cce98b92c037a2ff/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135303536392f33393034303031622d656162382d363661332d653930362d6362313735323438646537612e706e67)
+![java-javascript](/img/in-post/how-to-design-components/icon-components.png)
 
 各个icon之间是等距离分布的。
 
