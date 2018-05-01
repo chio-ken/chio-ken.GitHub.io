@@ -63,8 +63,11 @@ GUI基本上存在于PC、手机等设备的画面上，在其中包括了很多
 
 关于以上有很详细的介绍，在这里附上链接：
 
-* [珍しいワークフロー：Atomic Designの原則とSketchでデザインからプログラミングまで](https://postd.cc/the-unicorn-workflow-design-to-code-with-atomic-design-principles-and-sketch/)
-* [Atomic Designの考え方と利点・欠点](http://blog.kubosho.com/entry/using-atomic-design)
+* [珍贵的workflow：Atomic Design的原则 和 用Sketch从设计到编码](https://postd.cc/the-unicorn-workflow-design-to-code-with-atomic-design-principles-and-sketch/)
+
+* [关于Atomic Design的想法 和 优缺点](http://blog.kubosho.com/entry/using-atomic-design)
+
+  ​
 
 
 #### 单一责任原则
@@ -100,6 +103,8 @@ Header仅仅负责这些单独分子或原子的布局。
 简而言之，如果您认为组件的责任不仅包含简单的功能，而且还包含布局，我认为按上述的做法会更容易。
 
 
+
+#### 样式闭合原则
 
 上面所讲的对样式也是同样的原则。
 
@@ -141,6 +146,150 @@ Header仅仅负责这些单独分子或原子的布局。
 解决方案有很多种，但我认为无论您选择哪个方案，您都必须担心此图标组件中的margin。 很容易想象，随着此类解决方案的积累，将会增加越来越多的脏CSS。
 
 出于这个原因，子组件不应该关心父组件的布局风格（译者注：如各个子组件之间的间距），反之亦然，父组件也不应该（太多）关注子组件的外观样式。 所以样式也要根据组件的分工来闭合。
+
+
+
+#### 识别可变样式
+
+与我之前所说的有些相反，有时候如果你让一个子组件一定程度上从父组件上得到样式，它会更容易使用。
+
+例如，一个应用程序中有两种类型的按钮。
+
+
+
+![java-javascript](/img/in-post/how-to-design-components/two-buttons-with-different-size.png)
+
+
+
+唯一的区别是宽度。 出于这个原因，制造两个独立的组件是有点麻烦的。 所以能够在父组件使用时指定宽度会很好。
+
+这是一个很容易理解的例子，但我认为会出现各种样式，包括背景颜色，文本颜色和其他可以更改的变量，所以让我们要每一次都进行判断。
+
+我的看法是：
+
+原则上样式是组件内闭合的，当有改变的必要或者值得去改变的时候，就去改变。
+
+但是不推荐仅凭感觉去推断（“改变了这个样式之后好像会很方便啊”）
+
+大多数的时候是没有改的必要的，并且即使在不是很高的情况下，更正成本也会使其变化。 让我们发扬YAGNI的精神吧。
+
+
+
+#### 状态和交互
+
+继续，状态和交互。 我把它们归纳在这里。
+
+首先，我认为术语的“状态”定义是很模糊的。
+
+我认为有很多种理解方式，但我个人认为它是以下定义。
+
+「应用程序操作期间的变量值」
+
+其广义上可以分为几种状态。 （我认为还有其他许多）
+
+* 数据
+* UI
+* Session
+* 通信
+* 定位（比如像Routing）
+
+
+
+“哪个组件处理哪个状态”是一个重要的议题。 并且这种状态改变由用户触发。交互不是对于有基本功能的分子级别元素而言，而是原子单位的元素，在相互作用中导致在任何状态的变化，这种数据流的确定为状态管理增加了难度。
+
+
+
+#### To flux or not to flux
+
+从“组件设计”这个主题来看，它可能是一条小巷，但我会把它作为一个我无法通过的大议题来提及。（译者注：**这里很奇怪**）
+
+我认为在解决“状态管理”时应该首先考虑的是“是否采用flux架构”。 flux是一种通过将数据流大致限制到一个方向来简化管理状态的体系结构。 使用flux时由于通过在组件外提供Store层来管理状态，因此采用或不采用flux会组件的设计产生影响。
+
+▼常见的flux图
+
+![java-javascript](/img/in-post/how-to-design-components/picture-of-flux.png)
+
+
+
+如果对详细的解说有兴趣的话，请参考下面的文章：
+
+- [什么是Flux](https://qiita.com/knhr__/items/5fec7571dab80e2dcd92)
+- [React、Flux和Redux](https://hogehuga.com/post-1095/)
+
+
+
+我认为flux的本质是“通过使数据流更易于查看来实现状态管理，而且不易出错并且易于调试”。 相反，如果中小型应用程序无法处理太多的组件层次，则没有必要。 角色越多观众越心痛（译者注：比如权力的游戏）。
+
+Redux的作者 Dan Abramov 也有一句名言：
+
+> flux就像杯子，你自然知道什么时候需要它。
+
+
+
+就我个人而言，我认为目前把Redux和Vuex放在一起的趋势并不好，React和Vue甚至在独立的基础上都是非常强大的工具，所以让我们在仔细考虑后再考虑你真正需要的东西。
+
+
+
+#### Container组件和 Presentational组件
+
+如果您曾经使用过Redux，一个理所当然的概念就是，基本上我们将组件分为“容器组件”和“展示组件”。 另外，我认为“从属组件最好不要有状态”这一概念是组件设计中的一个基本概念，不需要使用任何通量库等。
+
+首先，“展示性组件”，从名字也能看出来，自身并不携带状态。
+
+▼ "Presentational组件
+
+```javascript
+const Link = ({
+  active,
+  children,
+  onClick
+}) => {
+  if(active){
+    return <span>{children}</span>;
+  }
+  return (
+    <a href="#"
+      onClick={e => {
+        e.preventDefault();
+        onClick();
+      }}
+    >
+      {children}
+    </a>
+  )
+}
+```
+
+
+
+“容器组件”负责将数据倒入“演示组件”并在事件发生时传递回调函数。
+
+``` javascript
+const LinkContainer = (props) => <Link {...props.link} />
+```
+
+基本上，因为尽可能不分散地管理状态更为幸福，所以最好在设计时考虑这些划界。
+
+
+
+#### 组件上的关闭状态
+
+
+
+我认为在初次使用redux的情况下，都会有一个疑问，是否将文本字段的输入状态置于全局存储中？
+
+``` javascript
+const hoge = ({
+  text,
+  handleChange
+}) => {
+  return (
+    <form>
+      <input type="text" onChange={e => handleChange(e.target.value)} value={text}/>
+    </form>
+  );
+}
+```
 
 
 
