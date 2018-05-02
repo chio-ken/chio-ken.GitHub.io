@@ -282,7 +282,7 @@
     // handle render
     function _render(_hash){
         var _hash = _hash || window.location.hash;
-        // en
+        // jp
         if(_hash == "#jp"){
             $select.selectedIndex = 2;
             $jp.style.display = "block";
@@ -291,7 +291,7 @@
             $en.classList.remove("active");
             $zh.style.display = "none";
             $zh.classList.remove("active");
-        // zh by default
+        // en
         }else{
             if(_hash == "#en"){
                 // not trigger onChange, otherwise cause a loop call.
@@ -303,6 +303,7 @@
                 $jp.style.display = "none";
                 $jp.classList.remove("active");
             }else{
+                // zh by default
                 $select.selectedIndex = 0;
                 $zh.style.display = "block";
                 $zh.classList.add("active");
