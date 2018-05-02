@@ -5,7 +5,7 @@ subtitle:     "JavaScript, 函数"
 date:         2018-04-22
 author:       "Chou"
 header-img:   "img/post-bg-js-version.jpg"
-catalog:      true
+catalog:      false
 multilingual: false
 tags:
     - 前端开发
