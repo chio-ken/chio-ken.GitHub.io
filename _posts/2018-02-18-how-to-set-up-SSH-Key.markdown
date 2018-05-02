@@ -5,6 +5,7 @@ subtitle:   "--踩坑"
 date:       2018-02-18
 author:     "Chou"
 header-img: "img/post-bg-js-version.jpg"
+catalog: true
 tags:
     - 前端开发
     - GitHub
