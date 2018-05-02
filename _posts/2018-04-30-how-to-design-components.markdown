@@ -1,12 +1,13 @@
 ---
-layout:     post
-title:      "谈谈最近项目中的组件设计 「译」"
-subtitle:   "HTML, CSS, JavaScript, component, front-end"
-date:       2018-04-30
-author:     "Chou"
-header-img: "img/post-bg-js-version.jpg"
-header-mask: 0.3
-catalog: true
+layout:       post
+title:        "谈谈最近项目中的组件设计 「译」"
+subtitle:     "HTML, CSS, JavaScript, component, front-end"
+date:         2018-04-30
+author:       "Chou"
+header-img:   "img/post-bg-js-version.jpg"
+header-mask:  0.3
+catalog:      true
+multilingual: true
 tags:
     - 前端开发
     - 日语译文
@@ -16,12 +17,12 @@ tags:
 
 组件划分的颗粒度、什么样的状态下划分会更好，如果在整个开发团队没有达到一个共识的情况下很容易造成混乱。本篇文章的目的就是简述组件设计时怎么达到规范化。如果有人有同样的烦恼，看到这篇文章能得到解决，我会非常开心。
 
-##### 目标读者
+### 目标读者
 
 * “组件设计是什么？好吃吗？”
 * “第一次设计组件，这样做真的好吗？”，对自己没有信心的人。
 
-#### 引言：组件是什么
+### 引言：组件是什么
 
 首先，“组件（component）”这个词。在这里我们将它定义为“GUI的模块化部分”。
 
@@ -176,7 +177,7 @@ Header仅仅负责这些单独分子或原子的布局。
 
 
 
-#### 状态和交互
+### 状态和交互
 
 继续，状态和交互。 我把它们归纳在这里。
 
@@ -324,7 +325,7 @@ const hoge = ({
 
 
 
-#### 其他
+### 其他
 
 在本节中，我将提供一些实际编写面向组件的过程中的例子。比较简略请理解。
 
@@ -353,7 +354,7 @@ const hoge = ({
 
 
 
-#### 感谢
+### 感谢
 
 根据应用的不同，组件设计仿佛是个玄学，有时候觉得“就这么做啦！”可能就是对的。
 
