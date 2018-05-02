@@ -14,5 +14,5 @@ I will  be very happy if you can skate with me .
 
 
 
-![java-javascript](/img-about-skateboard-2.jpg)
+![java-javascript](/img/about-skateboard-2.jpg)
 
