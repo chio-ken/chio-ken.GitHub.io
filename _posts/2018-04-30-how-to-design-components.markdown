@@ -7,7 +7,7 @@ author:       "Chou"
 header-img:   "img/post-bg-js-version.jpg"
 header-mask:  0.3
 catalog:      true
-multilingual: true
+multilingual: false
 tags:
     - 前端开发
     - 日语译文
