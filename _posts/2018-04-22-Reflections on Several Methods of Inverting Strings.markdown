@@ -1,11 +1,12 @@
 ---
-layout:     post
-title:      "关于翻转字符串方法的总结"
-subtitle:   "JavaScript, 函数"
-date:       2018-04-22
-author:     "Chou"
-header-img: "img/post-bg-js-version.jpg"
-catalog:    true
+layout:       post
+title:        "关于翻转字符串方法的总结"
+subtitle:     "JavaScript, 函数"
+date:         2018-04-22
+author:       "Chou"
+header-img:   "img/post-bg-js-version.jpg"
+catalog:      true
+multilingual: false
 tags:
     - 前端开发
     - JavaScript
