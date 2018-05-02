@@ -2,7 +2,7 @@
 layout:     post
 title:      "谈谈最近项目中的组件设计 「译」"
 subtitle:   "HTML, CSS, JavaScript, component, front-end"
-date:       2018-05-01
+date:       2018-04-30
 author:     "Chou"
 header-img: "img/post-bg-js-version.jpg"
 header-mask: 0.3
