@@ -293,7 +293,7 @@
             $jp.classList.remove("active");
         // zh by default
         }else{
-            if(hash == "#zh"){
+            if(_hash == "#zh"){
                 // not trigger onChange, otherwise cause a loop call.
                 $select.selectedIndex = 0;
                 $zh.style.display = "block";
@@ -301,7 +301,7 @@
                 $en.style.display = "none";
                 $en.classList.remove("active");
                 $jp.style.display = "none";
-            $jp.classList.remove("active");
+                $jp.classList.remove("active");
             }else{
                 $select.selectedIndex = 2;
                 $jp.style.display = "block";
