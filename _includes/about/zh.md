@@ -10,4 +10,9 @@
 
 一起滑滑板 ：）。
 
-![java-javascript](/img/about-skateboard.jpeg)
+
+
+
+
+![java-javascript](/img/about-skateboard-1.jpeg)
+
