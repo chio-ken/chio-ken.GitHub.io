@@ -32,7 +32,7 @@ GUI基本上存在于PC、手机等设备的画面上，在其中包括了很多
 3. 状态
 4. 功能
 
-![java-javascript](/img/in-post/how-to-design-components/four-element-of-component.png)
+![ã¹ã¯ãªã¼ã³ã·ã§ãã 2018-04-01 13.14.51.png](https://camo.qiitausercontent.com/98df0a6cdc1a02d23e7d26c017c18328eebfe72b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135303536392f35653264393734622d616161662d333564652d386635372d3839336461303336333463612e706e67)
 
 首先是文本结构，这是HTML负责的部分，CSS负责样式部分。在开始设计组件时，这些方面很容易想象，如果您根据（Atomic Design）原子设计等概念简单分解UI部件，则此处不应有太多困难。
 
