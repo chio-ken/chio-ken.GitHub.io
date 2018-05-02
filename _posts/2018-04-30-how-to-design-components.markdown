@@ -5,6 +5,7 @@ subtitle:   "HTML, CSS, JavaScript, component, front-end"
 date:       2018-04-30
 author:     "Chou"
 header-img: "img/post-bg-js-version.jpg"
+catalog: true
 tags:
     - 前端开发
     - 日语译文
