@@ -71,8 +71,7 @@ console.log(arr.find(item => item > 9)); // undefined
 ```
 
 
-
- ##### (4). Array.prototype.findIndex()
+##### (4). Array.prototype.findIndex() 
 
 ​     The findIndex() method returns the index of the first element in the array that satisfies the provided testing function.
      Otherwise -1 is returned.
