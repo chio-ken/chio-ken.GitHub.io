@@ -1,375 +1,113 @@
 ---
 layout:       post
-title:        "谈谈最近项目中的组件设计 「译」"
-subtitle:     "HTML, CSS, JavaScript, component, front-end"
-date:         2018-04-30
+title:        "ES6中数组的新方法"
+subtitle:     "JavaScript, ES6, 基础知识"
+date:         2018-05-20
 author:       "Chou"
-header-img:   "img/post-bg-design-component.jpg"
+header-img:   "img/post-bg-new-features-of-array.jpg"
 header-mask:  0.3
 catalog:      true
 multilingual: false
 tags:
     - 前端开发
-    - 日语译文
+    - JavaScript
+    - 知识总结
 ---
-
-随着以各种组件库为基础的React,Vue等前端框架的普及，如今的前端可以说是变成了面向组件开发的前端，是不是在组件的设计过程中遇到了很多的困难呢。
-
-组件划分的颗粒度、什么样的状态下划分会更好，如果在整个开发团队没有达到一个共识的情况下很容易造成混乱。本篇文章的目的就是简述组件设计时怎么达到规范化。如果有人有同样的烦恼，看到这篇文章能得到解决，我会非常开心。
-
-### 目标读者
-
-* “组件设计是什么？好吃吗？”
-* “第一次设计组件，这样做真的好吗？”，对自己没有信心的人。
-
-### 引言：组件是什么
-
-首先，“组件（component）”这个词。在这里我们将它定义为“GUI的模块化部分”。
-
-GUI基本上存在于PC、手机等设备的画面上，在其中包括了很多为了达到完成应用而设计的功能。一般的应用都由多个画面构成，有很多部分会被重复地使用。例如，页眉和页脚将出现在几乎所有的页面上，并且具有相同样式的按钮，文本字段等也可能会在多个画面上重复使用。利用组件化的思想将这些部分分别开来，提高了再利用性的同时，也方便了在设计与技术方面的合作。
-
-这样的组件由下面的4个要素构成。
-
-1. 文本结构（HTML）
-2. 样式（CSS）
-3. 状态
-4. 功能
-
-![ã¹ã¯ãªã¼ã³ã·ã§ãã 2018-04-01 13.14.51.png](https://camo.qiitausercontent.com/98df0a6cdc1a02d23e7d26c017c18328eebfe72b/68747470733a2f2f71696974612d696d6167652d73746f72652e73332e616d617a6f6e6177732e636f6d2f302f3135303536392f35653264393734622d616161662d333564652d386635372d3839336461303336333463612e706e67)
-
-首先是文本结构，这是HTML负责的部分，CSS负责样式部分。在开始设计组件时，这些方面很容易想象，如果您根据（Atomic Design）原子设计等概念简单分解UI部件，则此处不应有太多困难。
-
-然而这不是最近的前端所提倡的做法，因为组件本身负责触发变化的状态和交互，由于组件还必须与外部交换数据和回调，因此会对实现效率产生限制。 为了提高工程师的生产力，常常产生审美与实现难易之间的冲突。
-
-我认为封装多个这样的角色是设计组件很困难的一个因素。接下来我将以我自己的理解来介绍。
-
-
-
-### 文本结构和样式
-
-文本结构和样式是非常相似的概念。（**翻译存疑**）
-
-
-
-#### 原子设计原则(Atomic Design)
-
-首先将UI分层是一个共识性的概念。
-最近感觉，原子设计已经成了默认的设计标准。所以我的建议是暂时应用这种标准是最好的。
-
-原子设计的思想将组件的设计划分成了以下的5个部分：
-
-常见的原子设计图 ▼ 
-
-![java-javascript](/img/in-post/how-to-design-components/Atomic-Design_Picture.png)
-
-* Atom（原子） - UI的最小単位。在功能上不能再进一步划分的部分，比如按钮和文本等。
-* Molecule（分子） - 由Atom组成的元素，如检索框。
-* Organisms（有机体） - 由分子和原子组合而成的元素。与分子的单一功能不同，其具有多个功能。
-* Template （模板）- 由Organisms组成的元素，也就是所谓的Wire frame。
-* Pages （页面）- 将数据注入模板形成的页面。
-
-关于以上有很详细的介绍，在这里附上链接：
-
-* [珍贵的workflow：Atomic Design的原则 和 用Sketch从设计到编码](https://postd.cc/the-unicorn-workflow-design-to-code-with-atomic-design-principles-and-sketch/)
-
-* [关于Atomic Design的想法 和 优缺点](http://blog.kubosho.com/entry/using-atomic-design)
-
-  ​
-
-
-#### 单一责任原则
-
-原则上，一个组件应该对一件事负责。
-
-在设计Molecule（分子）级别的组件时，这是一种重要的思维方式。当一个组件具有多个功能/角色时，这就预示着设计是糟糕的。
-
-糟糕的原因就是复用性低。
-
-像下面的例子中，创建了一个具有“更改用户名”和“连接外部服务”这两个功能的组件。          ![java-javascript](/img/in-post/how-to-design-components/example-for-single-responsiblity-rule.png)
-
-接下来，在用到这个组件的页面中，经常会有“我想要颠倒「用户名」和「外部服务」的顺序”、“我想要在「用户名」和「外部服务」之间加个”图标更改按钮“等等的需求。
-
-这样一来，我们就要在这个有缺陷的组件上加入复杂的条件分支，而且父组件还需要详细了解此子组件的样式，这样就会产生严重的耦合。
-
-所以如果从一开始就将「更改用户名」和「与外部服务链接」构建成两个单独的组件，则只需对新组件进行排序和添加即可。
-
-虽然举的这个例子是比较极端的情况，但我想还是能够将我的意思表达清楚了。
-
-读到这的时候可能有人就会觉得“Organisms（有机体）规模以上的元素随便怎么设计都可以了，就算有多个功能也没关系”。关于这一点，我认为Organisms（有机体）规模以上的元素，不应按功能划分，而应该按布局（layout）而划分。
-
-例如，Qiita的标题部分，有社区相关的下拉菜单、通知、跳转到我的页面的按钮等很多的功能。
-
-![java-javascript](/img/in-post/how-to-design-components/title-of-Qiita.png)
-
-然而，这些并不是由Header组件本身实现的功能，是包含在Header中的单独的分子或原子实现了的功能。
-
-Header仅仅负责这些单独分子或原子的布局。
-
-简而言之，如果您认为组件的责任不仅包含简单的功能，而且还包含布局，我认为按上述的做法会更容易。
-
-
-
-#### 样式闭合原则
-
-上面所讲的对样式也是同样的原则。
-
-首先对于样式，我个人认为应该分为2种。
-
-1. 外观样式
-2. 布局样式
-
-「外观样式」定义了对象组件的外观。相对应的，「布局样式」是对于分子级别以上的组件，定义了这个组件中的子组件们 是以怎样的方式布局的。
-
-我想表达的是：
-
-* 父组件不会知道子组件的外观样式
-
-* 子组件不会知道父组件的布局样式
-
-  ​
-
-例如，存在多个下面这样的 icon 组件。
-
-![java-javascript](/img/in-post/how-to-design-components/icon-components.png)
-
-各个icon之间是等距离分布的。
-
-假设我们在图标组件中定义了此边距。
-
-```javascript
-.icon {
-    ...
-    margin-right: 15px;
-}
-```
-
-那么，假设你想在另一个页面上使用这个图标。 这一次，我们假设布局要求图标右侧的边距为100px。 这时候在哪里去实现这个属性好呢？
-
-解决方案有很多种，但我认为无论您选择哪个方案，您都必须担心此图标组件中的margin。 很容易想象，随着此类解决方案的积累，将会增加越来越多的脏CSS。
-
-出于这个原因，子组件不应该关心父组件的布局风格（译者注：如各个子组件之间的间距），反之亦然，父组件也不应该（太多）关注子组件的外观样式。 所以样式也要根据组件的分工来闭合。
-
-
-
-#### 识别可变样式
-
-与我之前所说的有些相反，有时候如果你让一个子组件一定程度上从父组件上得到样式，它会更容易使用。
-
-例如，一个应用程序中有两种类型的按钮。
-
-
-
-![java-javascript](/img/in-post/how-to-design-components/two-buttons-with-different-size.png)
-
-
-
-唯一的区别是宽度。 出于这个原因，制造两个独立的组件是有点麻烦的。 所以能够在父组件使用时指定宽度会很好。
-
-这是一个很容易理解的例子，但我认为会出现各种样式，包括背景颜色，文本颜色和其他可以更改的变量，所以让我们要每一次都进行判断。
-
-我的看法是：
-
-原则上样式是组件内闭合的，当有改变的必要或者值得去改变的时候，就去改变。
-
-但是不推荐仅凭感觉去推断（“改变了这个样式之后好像会很方便啊”）
-
-大多数的时候是没有改的必要的，并且即使在不是很高的情况下，更正成本也会使其变化。 让我们发扬YAGNI的精神吧。
-
-
-
-### 状态和交互
-
-继续，状态和交互。 我把它们归纳在这里。
-
-首先，我认为术语的“状态”定义是很模糊的。
-
-我认为有很多种理解方式，但我个人认为它是以下定义。
-
-「应用程序操作期间的变量值」
-
-其广义上可以分为几种状态。 （我认为还有其他许多）
-
-* 数据
-* UI
-* Session
-* 通信
-* 定位（比如像Routing）
-
-
-
-“哪个组件处理哪个状态”是一个重要的议题。 并且这种状态改变由用户触发。交互不是对于有基本功能的分子级别元素而言，而是原子单位的元素，在相互作用中导致在任何状态的变化，这种数据流的确定为状态管理增加了难度。
-
-
-
-#### To flux or not to flux
-
-从“组件设计”这个主题来看，它可能是一条小巷，但我会把它作为一个我无法通过的大议题来提及。（译者注：**这里很奇怪**）
-
-我认为在解决“状态管理”时应该首先考虑的是“是否采用flux架构”。 flux是一种通过将数据流大致限制到一个方向来简化管理状态的体系结构。 使用flux时由于通过在组件外提供Store层来管理状态，因此采用或不采用flux会组件的设计产生影响。
-
-▼常见的flux图
-
-![java-javascript](/img/in-post/how-to-design-components/picture-of-flux.png)
-
-
-
-如果对详细的解说有兴趣的话，请参考下面的文章：
-
-- [什么是Flux](https://qiita.com/knhr__/items/5fec7571dab80e2dcd92)
-- [React、Flux和Redux](https://hogehuga.com/post-1095/)
-
-
-
-我认为flux的本质是“通过使数据流更易于查看来实现状态管理，而且不易出错并且易于调试”。 相反，如果中小型应用程序无法处理太多的组件层次，则没有必要。 角色越多观众越心痛（译者注：比如权力的游戏）。
-
-Redux的作者 Dan Abramov 也有一句名言：
-
-> flux就像杯子，你自然知道什么时候需要它。
-
-
-
-就我个人而言，我认为目前把Redux和Vuex放在一起的趋势并不好，React和Vue甚至在独立的基础上都是非常强大的工具，所以让我们在仔细考虑后再考虑你真正需要的东西。
-
-
-
-#### Container组件和 Presentational组件
-
-如果您曾经使用过Redux，一个理所当然的概念就是，基本上我们将组件分为“容器组件”和“展示组件”。 另外，我认为“从属组件最好不要有状态”这一概念是组件设计中的一个基本概念，不需要使用任何通量库等。
-
-首先，“展示性组件”，从名字也能看出来，自身并不携带状态。
-
-▼ "Presentational组件
-
-```javascript
-const Link = ({
-  active,
-  children,
-  onClick
-}) => {
-  if(active){
-    return <span>{children}</span>;
-  }
-  return (
-    <a href="#"
-      onClick={e => {
-        e.preventDefault();
-        onClick();
-      }}
-    >
-      {children}
-    </a>
-  )
-}
-```
-
-
-
-“容器组件”负责将数据倒入“演示组件”并在事件发生时传递回调函数。
-
-``` javascript
-const LinkContainer = (props) => <Link {...props.link} />
-```
-
-基本上，因为尽可能不分散地管理状态更为幸福，所以最好在设计时考虑这些划界。
-
-
-
-#### 组件上的关闭状态
-
-
-
-我认为在初次使用redux的情况下，都会有一个疑问，是否将文本字段的输入状态置于全局存储中？
-
-``` javascript
-const hoge = ({
-  text,
-  handleChange
-}) => {
-  return (
-    <form>
-      <input type="text" onChange={e => handleChange(e.target.value)} value={text}/>
-    </form>
-  );
-}
-```
-
-
-
-假设有一个没有这种变化的输入元素，输入值作为handleChange的参数传递。
-
-我是按照这个状态是否关闭了这个组件作为基准来进行分类的。
-
-例如，在上面的例子中，编辑文本字段的值不会影响其他组件，对吧？ 另外，一旦你发送了你输入的值，它将被重置。 我们没有在组件外来进行管理。
-
-像这样“状态关闭在组件上”的情况下，用那个组件管理比较轻松吧。状态不一定要全部集中在一个地方，根据情况和本地的状态管理分开使用。
-
-
-
-#### 提取常见行为·了解其实施模式
-
-
-
-让我们从各种组件使用的常见行为中提取它的行为。 最好提取经常发生的行为，例如“仅更改被选中项目的样式”或“仅查看已登录的人员”。
-
-通过实现这一点，可以从一个组件灵活地创建各种组件。
-例如，在上面的示例中，您可以通过简单的按钮组件轻松生成“只改变被选中项目样式的按钮组件”和“只能看到登录人员的按钮组件”。 如果你不提取行为，你需要单独去定义每一个组件，非常麻烦。
-
-有几种模式可以实现这一点，但主要的模式包括Higher Component和Render Prop。 详细的介绍请参照其他文章。 内容虽然是React基础，但我认为思维方式也可以应用于其他组件基础库。
-
-- [React的Higher Component 详解](https://postd.cc/react-higher-order-components-in-depth/)
-- [Render Props](https://reactjs.org/docs/render-props.html)
-
-
-
-（这将是我的文章的广告，使用Vue的人请看[这里](https://qiita.com/seya/items/abccdd7b502535844659)）
-
-
-
-### 其他
-
-在本节中，我将提供一些实际编写面向组件的过程中的例子。比较简略请理解。
-
-
-
-#### 三次定律
-
-标题来自“重构（Martin Fowler的书）”。 虽然在概念上它不能被分解成Atom，但我认为有一些UI部件只能在一个地方使用。 这取决于如何创建设计系统的策略，但原则上组件化的目标是提高可重用性。
-
-所以我认为那些不会被重复使用的部分，就没有封装成组件的必要，浪费时间与精力。
-
-这就是我所说的三次定律，如果一个部分出现了三次就要把它抽象成组件。
-
-当然根据个人喜好，也可以将标准定为两次。
-
-
-
-#### “prop drilling”问题
-
-当组件的层次越来越深时，就会出现“prop drilling”问题。
-当您想要从最底层接收到第三层、第四层的数据时，即使对于中间组件，您也必须创建用于不必要地传递数据的接口。
-
-我们经常使用Redux和MobX来解决这个问题，但是如果只是为了解决这一个问题的话，那么不推荐使用它。 首先，我认为这些工具试图解决的任务是不同的事情，使用这些工具的麻烦和“prop drilling问题”的麻烦不相上下。
-
-要说怎么做最好呢，最近React可以通过使用v16.3中的新的Context API来解决它。Vue的话，这么做更简洁，有没有人可以告诉我。
-
-
-
-### 感谢
-
-根据应用的不同，组件设计仿佛是个玄学，有时候觉得“就这么做啦！”可能就是对的。
-
-因为在某些情况下，因为它是负责与用户交互的一部分，所以想要保证概念和逻辑的美妙是不可能的。 为了提高这种交互的质量，有时候也需要接受实现的复杂性。
-
-但是，我们应该能够通过制定某些规则而不是以明显的方式使其复杂化来降低责任风险。 
-
-我不能说这篇文章中写的适用于所有情景，但是如果它稍微对你有些帮助的话，我就很开心了。
-
-最后，Happy Coding !
-
-
-
-> 著作权声明
->
-
-本文译自 [最近のフロントエンドのコンポーネント設計に立ち向かう](https://qiita.com/seya/items/8814e905693f00cdade2)   作者：[seya](https://qiita.com/seya)
-译者 [张健](http://chioken.com/about/)，首次发布于 [Chou Blog](http://chioken.com/)，转载请保留以上链接
+//New Array Features of ES6
+1. Create an array
+   (1). Array.of()  
+	   // Regardless of the number and type of parameters,all the incoming parameters of the method will be the data in the array.
+
+	   let items = Array.of(1, '2', [3, 4]);
+	   console.log(items); // [1, '2', [3, 4]]
+	   console.log(items.length); // 3
+
+   (2). Array.from()
+	   // Convert array-like objects and iterable objects into arrays.
+	
+	   // Array-like objects
+	   let trans = function(values) {
+	   	   return Array.from(arguments, item => item + 1);
+	   }
+	   console.log(trans(1, 2, 3)); // [2, 3, 4]
+
+	   // Iterable objects
+	   let obj = {
+	   	   *[Symbol.iterator]() {
+	   	   	    yield 1;
+	   	   	    yield 2;
+	   	   	    yield 3;
+	   	   }
+	   }
+	   console.log(Array.from(obj)); // [1, 2, 3]
+
+2. New methods on the array
+
+   (1). Array.prototype.find() 
+        // The find() method returns the value of the first element in the array that satisfies the provided testing function. 
+        // Otherwise undefined is returned.
+        Array.prototype.findIndex()
+        // The findIndex() method returns the index of the first element in the array that satisfies the provided testing function.
+        // Otherwise -1 is returned.
+       
+        let arr = Array.of(1, 5, 8, 9);
+        console.log(arr.find(item => item > 5)); // 8
+        console.log(arr.findIndex(item => item > 5)); // 2
+
+    (2). Array.prototype.fill()
+        // The fill method fills all the elements of an array from a start index to an end index with a static value.
+        // The end index is not included.
+        // If only the start index is given and the end index is not specified, the default ending index is the end of the array.
+       
+        let arr = Array.of(1, 5, 8, 9);
+        console.log(arr.fill(0, 1, 2)); // [1, 0, 8, 9]
+        console.log(arr.fill(0, 1)); // [1, 0, 0, 0]
+    (3). Array.prototype.copyWithin()
+        // The copyWithin method shallow copy part of an array to another location in the same array and returns it, without modifying its size.
+         arr.copyWithin(target, start, end)
+		 let arr = Array.of(1, 5, 8, 9, 10);
+         console.log(arr.copyWithin(1, 2, 2)); // [1, 5, 8, 9, 10]
+         console.log(arr.copyWithin(1,3)) // [1, 9, 10, 9, 10]
+
+3. TypedArray
+   // array buffer
+   let buffer = new ArrayBuffer(10);
+   console.log(buffer.byteLength); // 10
+
+   // TypedArray.prototype.slice()
+   // The slice() method returns a shallow copy of a typed array into a new typed array object.
+   let buffer = new ArrayBuffer(10);
+   let buf = buffer.slice(4, 8);
+   console.log(buf.byteLength); // 4
+
+   // dataview
+   // The dataview provides a low-level interface of reading and writing multiple number types in an ArrayBuffer irrespective of the platform's endianness.
+   let buffer = new ArrayBuffer(10);
+   view = new DataView(Buffer, 5, 2);
+
+
+4. Array.prototype.keys()
+   // The keys() method returns a new Array Iterator object that contains the keys for each index in the array.
+
+   let arr = [1, 2, 3];
+   let iterator = arr.keys();
+   for (let key of iterator) {
+   	   console.log(key); // 0, 1, 2
+   } 
+
+  Array.prototype.values()
+
+   let arr = [1, 2, 3];
+   let iterator = arr.values();
+   for (let values of iterator) {
+   	   console.log(values); // 1, 2, 3
+   } 
+
+  Array.prototype.entries()
+
+   let arr = [1, 2, 3];
+   let iterator = arr.entries();
+   for (let item of iterator) {
+   	   console.log(item); // [0,1 ], [1, 2], [2, 3]
+   } 
+Array.prototype[Symbol.iterator]
