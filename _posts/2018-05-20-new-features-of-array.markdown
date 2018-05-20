@@ -13,6 +13,8 @@ tags:
     - JavaScript
     - 知识总结
 ---
+
+
 ####ES6's new array methods
 
 #####(1). Array.of()
@@ -70,7 +72,7 @@ console.log(arr.find(item => item > 9)); // undefined
 
 
 
- #####(4).Array.prototype.findIndex()
+ #####(4). Array.prototype.findIndex()
 
 ​     The findIndex() method returns the index of the first element in the array that satisfies the provided testing function.
      Otherwise -1 is returned.
@@ -112,7 +114,7 @@ console.log(arr.copyWithin(1,3)) // [1, 9, 10, 9, 10]
 
 
 
-#####(7).Array.prototype.keys()
+#####(7). Array.prototype.keys()
 
 ​     The keys() method returns a new **Array Iterator** object that contains the keys for each index in the array.
 
@@ -142,7 +144,7 @@ for (let values of iterator) {
 
 
 
-#####(9).Array.prototype.entries()
+#####(9). Array.prototype.entries()
 
 ​       The entries() method returns a new **Array Iterator** object that contains the key/value pairs for each index in the array.
 
@@ -159,7 +161,7 @@ for (let item of iterator) {
 
 ####TypedArray
 
-#####(1).array buffer
+#####(1). array buffer
 
 ```javascript
 let buffer = new ArrayBuffer(10);
@@ -168,7 +170,7 @@ console.log(buffer.byteLength); // 10
 
 
 
-##### (2).TypedArray.prototype.slice()
+##### (2). TypedArray.prototype.slice()
 
 ​     The slice() method returns a shallow copy of a typed array into a new typed array object.
 
@@ -180,7 +182,7 @@ console.log(buf.byteLength); // 4
 
 
 
-#####(3).dataview
+#####(3). dataview
 
 ​     The dataview provides a low-level interface of reading and writing multiple number types in an ArrayBuffer irrespective of the platform's endianness.
 
