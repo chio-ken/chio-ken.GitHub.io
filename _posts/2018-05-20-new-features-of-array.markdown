@@ -15,9 +15,9 @@ tags:
 ---
 
 
-####ES6's new array methods
+#### ES6's new array methods
 
-#####(1). Array.of()
+##### (1). Array.of()
 
 ​      RegSardless of the number and type of parameters,all the incoming parameters of the method will be the data in the array.
 
@@ -29,7 +29,7 @@ console.log(items.length); // 3
 
 
 
-#####(2). Array.from()
+##### (2). Array.from()
 
 ​      Convert **array-like objects** and **iterable objects** into arrays.
 
@@ -59,7 +59,7 @@ console.log(Array.from(obj)); // [1, 2, 3]
 
 
 
-#####(3). Array.prototype.find() 
+##### (3). Array.prototype.find() 
 
 ​      The find() method returns the value of the first element in the array that satisfies the provided testing function. 
      Otherwise undefined is returned.
@@ -72,7 +72,7 @@ console.log(arr.find(item => item > 9)); // undefined
 
 
 
- #####(4). Array.prototype.findIndex()
+ ##### (4). Array.prototype.findIndex()
 
 ​     The findIndex() method returns the index of the first element in the array that satisfies the provided testing function.
      Otherwise -1 is returned.
@@ -114,7 +114,7 @@ console.log(arr.copyWithin(1,3)) // [1, 9, 10, 9, 10]
 
 
 
-#####(7). Array.prototype.keys()
+##### (7). Array.prototype.keys()
 
 ​     The keys() method returns a new **Array Iterator** object that contains the keys for each index in the array.
 
@@ -129,7 +129,7 @@ for (let key of iterator) {
 
 
 
-#####(8).  Array.prototype.values()
+##### (8).  Array.prototype.values()
 
 ​       The keys() method returns a new **Array Iterator** object that contains the keys for each index in the array.
 
@@ -144,7 +144,7 @@ for (let values of iterator) {
 
 
 
-#####(9). Array.prototype.entries()
+##### (9). Array.prototype.entries()
 
 ​       The entries() method returns a new **Array Iterator** object that contains the key/value pairs for each index in the array.
 
@@ -159,9 +159,9 @@ for (let item of iterator) {
 
 
 
-####TypedArray
+#### TypedArray
 
-#####(1). array buffer
+##### (1). array buffer
 
 ```javascript
 let buffer = new ArrayBuffer(10);
@@ -182,7 +182,7 @@ console.log(buf.byteLength); // 4
 
 
 
-#####(3). dataview
+##### (3). dataview
 
 ​     The dataview provides a low-level interface of reading and writing multiple number types in an ArrayBuffer irrespective of the platform's endianness.
 
