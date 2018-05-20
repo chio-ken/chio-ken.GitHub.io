@@ -86,8 +86,10 @@ console.log(arr.findIndex(item => item > 9)); // -1
 ##### (5). Array.prototype.fill()
 
 ​      The fill method fills all the elements of an array from a start index to an end index with a static value.
-     // The end index is not included.
-     // If only the start index is given and the end index is not specified, the default ending index is the end of the array.
+
+​     // The end index is not included.
+
+​    // If only the start index is given and the end index is not specified, the default ending index is the end of the array.
 
 ```javascript
 let arr = Array.of(1, 5, 8, 9);
@@ -98,8 +100,9 @@ console.log(arr.fill(0, 1)); // [1, 0, 0, 0]
 
 ##### (6). Array.prototype.copyWithin()
 
-​     The copyWithin method shallow copy part of an array to another location in the same array and returns it, without modifying its size.
-      //arr.copyWithin(target, start, end)
+​	The copyWithin method shallow copy part of an array to another location in the same array and returns it, without modifying its size.
+
+​	//arr.copyWithin(target, start, end)
 
 ```javascript
 let arr = Array.of(1, 5, 8, 9, 10);
@@ -174,6 +177,8 @@ let buffer = new ArrayBuffer(10);
 let buf = buffer.slice(4, 8);
 console.log(buf.byteLength); // 4
 ```
+
+
 
 #####(3).dataview
 
