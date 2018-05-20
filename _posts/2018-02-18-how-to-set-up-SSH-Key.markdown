@@ -4,7 +4,7 @@ title:        "电脑公钥未添加至GitHub导致本地操作失败的解决�
 subtitle:     "--踩坑"
 date:         2018-02-18
 author:       "Chou"
-header-img:   "img/post-bg-js-version.jpg"
+header-img:   "img/post-bg-setup-SSH-Key.jpg"
 catalog:      false
 multilingual: false
 tags:
