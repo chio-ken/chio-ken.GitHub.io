@@ -15,9 +15,9 @@ tags:
 ---
 ####ES6's new array methods
 
-#####(1). Array.of()  
+#####(1). Array.of()
 
-​      Regardless of the number and type of parameters,all the incoming parameters of the method will be the data in the array.
+​      RegSardless of the number and type of parameters,all the incoming parameters of the method will be the data in the array.
 
   ``` javascript
 let items = Array.of(1, '2', [3, 4]);
