@@ -42,11 +42,11 @@ tags:
 ```javascript
 // shallowClone
 function shallowClone(oldObj) {
-	const newObj = {};
-	for (let i in oldObj) {
-	newObj[i] = oldObj[i];
+    const newObj = {};
+    for (let i in oldObj) {
+        newObj[i] = oldObj[i];
     }
-	return newObj;
+    return newObj;
 }
 ```
 
@@ -118,11 +118,11 @@ console.log(oldObj.f.g === obj.f.g); // true
 
 #### 方法二：
 
-
-
 ```Object.assign()```方法
 
 ```Object.assign()```方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+
+
 
  ```javascript
 // 原数据
@@ -243,11 +243,11 @@ console.log(newObj.a, oldObj.a); // TypeEror: COnverting circular structor to JS
 
 
 
-```#```不能深拷贝函数、正则表达式
+`#`不能深拷贝函数、正则表达式
 
-```#```拷贝之后的构造函数的指向错误，所有的constructor都指向Object。
+`#`拷贝之后的构造函数的指向错误，所有的constructor都指向Object。
 
-```#```如果对象有循环引用，会出错。
+`#`如果对象有循环引用，会出错。
 
 
 
