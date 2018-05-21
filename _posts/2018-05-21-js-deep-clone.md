@@ -120,13 +120,9 @@ console.log(oldObj.f.g === obj.f.g); // true
 
 `*`Object.assign()方法
 
-
-
 Object.assign()方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
 
-
-
- ```javascript
+```javascript
 // 原数据
 var oldObj = {
     a: 1,
@@ -150,7 +146,9 @@ obj.c = 6;
 // 检测
 console.log(obj.a === oldObj.a); // true
 console.log(oldObj.a); // 4
- ```
+```
+
+
 
 上面的检测结果说明，```Object.assign()```也是浅拷贝。
 
