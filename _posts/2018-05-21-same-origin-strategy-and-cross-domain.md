@@ -372,15 +372,4 @@ CORS的错误会被onerror函数捕获，能在浏览器看到报错信息。
 
 `*`  过滤callback以及JSON数据输出
 
-对输出结果进行转码处理，指定Content-Type的编码为utf-8，即Content-Type: application/json; utf-8。
-
-
-
-
-
-
-
-
-
-##### 
-
+对输出结果进行转码处理，指定Content-Type的编码为utf-8，即Content-Type: application/json; utf-8
