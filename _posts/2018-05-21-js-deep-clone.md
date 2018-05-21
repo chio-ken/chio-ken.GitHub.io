@@ -50,6 +50,8 @@ function shallowClone(oldObj) {
 }
 ```
 
+
+
 简单测试一下：
 
 ```javascript
@@ -120,7 +122,7 @@ console.log(oldObj.f.g === obj.f.g); // true
 
 `*`Object.assign()方法
 
-Object.assign()方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
+```Object.assign()```方法用于将所有可枚举属性的值从一个或多个源对象复制到目标对象。它将返回目标对象。
 
 ```javascript
 // 原数据
@@ -189,7 +191,7 @@ console.log(oldObj.a); // 1
 
 与之前的浅拷贝相比这次明显成功进行了深拷贝。
 
-但是很明显不是最完美的解决办法，因为此方法用的是JSON的```parse()```和```stringify()```,所以只能对能够被json直接表示的数据结构，包括Number、String、Boolean、Array扁平对象。不过大多数的场景应该够用了。
+但是很明显不是最完美的解决办法，因为此方法用的是JSON的```parse()```和```stringify()```,所以只能对能够被json直接表示的数据结构，包括```Number```、```String```、```Boolean```、```Array```扁平对象。不过大多数的场景应该够用了。
 
 那测试一下对其他的数据类型进行深拷贝会有什么样的结果呢。
 
@@ -253,7 +255,7 @@ console.log(newObj.a, oldObj.a); // TypeEror: COnverting circular structor to JS
 
 #### 方法二：
 
-递归拷贝
+`*`递归拷贝
 
 ```javascript
 function deepClone(oldObj, newObj) {
@@ -284,6 +286,8 @@ function deepClone(oldObj, newObj) {
 
 
 #### 方法三：
+
+`*` ```Object.create()```方法
 
 利用```Object.create()```，可以进行深拷贝。而且函数、正则表达式、稀疏数组都可以被拷贝，构造函数的指向和循环引用问题都得到解决。
 
@@ -323,8 +327,6 @@ console.log(newObj.c, oldObj.c); // /ab+c/i /ab+c/i
 // 构造函数指向正确
 console.log(newObj.d.constructor, oldObj.d.constructor); // [Function: person] [Function: person]
 ```
-
-
 
 
 
