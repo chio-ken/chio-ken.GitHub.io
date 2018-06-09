@@ -1,21 +1,3 @@
----
-layout:       post
-title:        "用JavaScript解决LeetCode简单数组题"
-subtitle:     "JavaScript, LeetCode，算法，基础知识"
-date:         2018-06-04
-author:       "Chou"
-header-img:   "img/post-bg-js-LeetCode.jpg"
-header-mask:  0.3
-catalog:      true
-multilingual: false
-tags:
-    - JavaScript
-    - LeetCode
-    - 算法
-    - 知识总结
-
----
-
 
 
 用JavaScript把LeetCode上的数组题做一遍，在这里记录一下。
@@ -24,9 +6,9 @@ tags:
 
 题目描述：
 
->给定一个排序数组，你需要在**原地**删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
+> 给定一个排序数组，你需要在**原地**删除重复出现的元素，使得每个元素只出现一次，返回移除后数组的新长度。
 >
->不要使用额外的数组空间，你必须在**原地修改输入数组**并在使用 O(1) 额外空间的条件下完成。
+> 不要使用额外的数组空间，你必须在**原地修改输入数组**并在使用 O(1) 额外空间的条件下完成。
 
 
 
@@ -73,9 +55,9 @@ j = 0, i = 3; nums[j] ！= nums[i]了，把nums[i]的值赋给num[j]的下一项
 
 题目描述：
 
->给定一个整数数组和一个目标值，找出数组中和为目标值的**两个**数。
+> 给定一个整数数组和一个目标值，找出数组中和为目标值的**两个**数。
 >
->你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
+> 你可以假设每个输入只对应一种答案，且同样的元素不能被重复利用。
 
 
 
@@ -110,16 +92,16 @@ var twoSum = function(nums, target) {
 
 问题描述：
 
->给定长度为 **2n** 的数组, 你的任务是将这些数分成 **n** 对, 例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从1 到 n 的 min(ai, bi) 总和最大。 
+> 给定长度为 **2n** 的数组, 你的任务是将这些数分成 **n** 对, 例如 (a1, b1), (a2, b2), ..., (an, bn) ，使得从1 到 n 的 min(ai, bi) 总和最大。 
 >
->**示例 1:** 
+> **示例 1:** 
 >
->```
->输入: [1,4,3,2]
->
->输出: 4
->解释: n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).
->```
+> ```
+> 输入: [1,4,3,2]
+> 
+> 输出: 4
+> 解释: n 等于 2, 最大总和为 4 = min(1, 2) + min(3, 4).
+> ```
 
 
 
@@ -200,21 +182,21 @@ let arrayPairSum = function(nums) {
 
 问题描述：
 
->定一个数组 *nums* 和一个值 *val*，你需要**原地**移除所有数值等于 *val* 的元素，返回移除后数组的新长度。
+> 定一个数组 *nums* 和一个值 *val*，你需要**原地**移除所有数值等于 *val* 的元素，返回移除后数组的新长度。
 >
->不要使用额外的数组空间，你必须在**原地修改输入数组**并在使用 O(1) 额外空间的条件下完成。
+> 不要使用额外的数组空间，你必须在**原地修改输入数组**并在使用 O(1) 额外空间的条件下完成。
 >
->元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
+> 元素的顺序可以改变。你不需要考虑数组中超出新长度后面的元素。
 >
->**示例 1:** 
+> **示例 1:** 
 >
->```
->给定 nums = [3,2,2,3], val = 3,
->
->函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
->
->你不需要考虑数组中超出新长度后面的元素。
->```
+> ```
+> 给定 nums = [3,2,2,3], val = 3,
+> 
+> 函数应该返回新的长度 2, 并且 nums 中的前两个元素均为 2。
+> 
+> 你不需要考虑数组中超出新长度后面的元素。
+> ```
 
 
 
@@ -267,13 +249,147 @@ var removeElement = function(nums, val) {
             nums[i] = nums[n];
             }
     }
-    return nums; // [3, 2, 2, 3] => [3, 2, 2, 3]
+    return nums; 
+};
+removeElement([3, 2, 2, 3], 3); // [3, 2, 2, 3]
+```
+
+还是出现了问题，分析一下：当```i = 0```时，```nums[0]``` = ```3```，将数组元素减一，末位元素移到第一位，下一步i就变成2了，所以原来的末位元素并没有进行判断。
+
+所以只有判断当前元素不等于3时，才移动下标，往下进行遍历——使用```while```循环。
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} val
+ * @return {number}
+ */
+var removeElement = function(nums, val) {
+    var n = nums.length;
+    if (nums === null || n === 0) {
+        return 0;
+    }
+    var i = 0;
+    while(i < n) {
+        if (nums[i] === val) {
+            n--;
+            nums[i] = nums[n];
+        } else {
+            i++;
+        }
+    }
+    return n; 
+};
+removeElement([3, 2, 2, 3], 3); // [2, 2]
+```
+
+
+
+### 搜索插入位置
+
+题目描述：
+
+```
+给定一个排序数组和一个目标值，在数组中找到目标值，并返回其索引。如果目标值不存在于数组中，返回它将会被按顺序插入的位置。
+
+你可以假设数组中无重复元素。
+
+示例 1:
+输入: [1,3,5,6], 5
+输出: 2
+
+示例 2:
+输入: [1,3,5,6], 2
+输出: 1
+```
+
+思路：
+
+首先这个数组是有序的，而且无重复元素，就直接进行遍历，如果当前元素等于```target```，就返回当前下下标，如果比```target```大，也返回当前下标。如果遍历都结束了还是比```target```小，就返回数组长度。
+
+```javascript
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+var searchInsert = function(nums, target) {
+    var i = 0,
+        len = nums.length;
+    if (nums === null || len === 0) {
+        return 0;
+    }
+    
+    for (; i < len; i++) {
+        if (nums[i] >= target) {
+            return i;
+        }
+    }
+    return len;
 };
 ```
 
-还是出现了问题，分析一下：
+为了优化算法，也可以使用```二分法```，这也是面试官想看到的算法。
 
 ```javascript
-1. i = 0时，nums[0] = 3, => [3, 2, 2]
+/**
+ * @param {number[]} nums
+ * @param {number} target
+ * @return {number}
+ */
+let searchInsert = function(nums, target) {
+    let end = nums.length - 1,
+        start = 0;
+    
+    while(start <= end) {
+        let mid = Math.floor(start + (end - start) / 2);
+        if (nums[mid] === target) {
+            return mid;
+        }
+        if (nums[mid] > target) {
+            end = mid - 1;
+        } else {
+            start = mid + 1;
+        }
+    }
+    return start;  
+};
 ```
+
+上面用了```Math.floor()```的原因是，保证赋给```mid```的值是整数，比如```start = 0```，```end = 3```的时候，```mid```就是```1.5```。肯定得不到正确答案。我也是看了半天才注意到，因为算法肯定没有问题，用```Java```验证了一遍。
+
+```java
+class Solution {
+    public int searchInsert(int[] nums, int target) {
+        int start = 0, end = nums.length - 1;
+     
+        while(start <= end){
+            int mid = start + (end - start) / 2;
+            if(nums[mid] == target){
+                return mid;
+            }
+            if(nums[mid] > target){
+                 end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return start;
+    }
+}
+```
+
+​	
+
+### 存在重复元素
+
+问题描述：
+
+> 给定一个整数数组，判断是否存在重复元素。
+>
+> 如果任何值在数组中出现至少两次，函数返回 true。如果数组中每个元素都不相同，则返回 false。
+
+
+
+思路：
 
