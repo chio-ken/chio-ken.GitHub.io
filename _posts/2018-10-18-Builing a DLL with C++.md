@@ -4,7 +4,7 @@ title:        "如何用C++构建DLL文件 「译」"
 subtitle:     "C++, 中间件, 翻译，DLL开发"
 date:         2018-10-18
 author:       "Chou"
-header-img:   "img/post-bg-design-component.jpg"
+header-img:   "img/post-bg-building-a-dll.jpeg"
 header-mask:  0.3
 catalog:      true
 multilingual: false

@@ -4,7 +4,7 @@ title:        "LeetCode常见数组题"
 subtitle:     "JavaScript, 数组, 基础知识"
 date:         2018-06-04
 author:       "Chou"
-header-img:   "img/post-bg-VB.Net-Capacity.jpg"
+header-img:   "img/post-bg-js-leetcode-array.jpeg"
 header-mask:  0.3
 catalog:      true
 multilingual: false
