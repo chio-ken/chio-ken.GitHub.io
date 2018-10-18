@@ -165,7 +165,7 @@ extern "C" int GetSphereSAandVol(double radius, double* sa, double* vol);
 
 警告⚠️：不对C++函数名进行修饰，就无法实现函数的多态了。
 
-当完成C++装饰之后，就可以导出这些函数了。有两个方法通知[链接器][https://zh.wikipedia.org/wiki/%E9%93%BE%E6%8E%A5%E5%99%A8]去导出哪些函数。
+当完成C++装饰之后，就可以导出这些函数了。有两个方法通知[链接器](https://zh.wikipedia.org/wiki/%E9%93%BE%E6%8E%A5%E5%99%A8)去导出哪些函数。
 
 第一种，也是最简单的一种，就是用```__declspec(dllexport)```标签来标记需要被导出的函数。将该标签插入函数的声明和定义部分，如下：
 
