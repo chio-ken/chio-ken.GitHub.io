@@ -1,3 +1,20 @@
+---
+layout:       post
+title:        "LeetCode常见数组题"
+subtitle:     "JavaScript, 数组, 基础知识"
+date:         2018-06-04
+author:       "Chou"
+header-img:   "img/post-bg-VB.Net-Capacity.jpg"
+header-mask:  0.3
+catalog:      true
+multilingual: false
+tags:
+    - JavaScript
+    - 知识总结
+
+
+---
+
 
 
 用JavaScript把LeetCode上的数组题做一遍，在这里记录一下。
@@ -379,7 +396,7 @@ class Solution {
 }
 ```
 
-​	
+	
 
 ### 存在重复元素
 
