@@ -22,23 +22,11 @@ tags:
 
 Microsoft Visual C++ （MSVC）这个IDE，一些初学者用起来会比较棘手，这篇文章就是为了帮助那些想要编译DLL文件以供LabVIEW使用的人。
 
-#####注意：此文档的IDE为MSVC 2010
+##### 注意：此文档的IDE为MSVC 2010
 
-#### 目录
 
-[1. 新建DLL工程](#1)
-
-[2. 编辑源文件](#2)
-
-[3.导出符号](#3)
-
-[4.明确调用约定](#4)
-
-[5.构建DLL](#5)
 
 ### 第一步：新建DLL工程
-
-[][http://www.ni.com/cms/images/devzone/tut/SNAGHTMLa0ebe82.PNG]
 
 选择```文件```»```新建工程```打开```新建工程对话框```。从模板列表里选择```Win32 Project```，给新工程命名之后，点击```OK```。
 
@@ -46,7 +34,7 @@ Microsoft Visual C++ （MSVC）这个IDE，一些初学者用起来会比较棘�
 
 在下一个对话框中可以看到这个工程被设置为```Windows Application```，点击```下一步```把应用类型更改为```DLL```。
 
-![java-javascript](/img/in-post/building-a-dll-with-visual-c++/win32applicationwizardt.png)
+![java-javascript](/img/in-post/building-a-dll-with-visual-c++/win32applicationwizard.png)
 
 ![java-javascript](/img/in-post/building-a-dll-with-visual-c++/easydllfinished.png)
 
@@ -102,7 +90,7 @@ BOOL WINAPI DllMain(
 
 DllMain方法完善之后就需要写其他的文件了。
 
-```C++
+```
 //Function declarations
 int GetSphereSAandVol(double radius, double* sa, double* vol);
 double GetSA(double radius);
@@ -149,7 +137,7 @@ double GetVol(double radius)
 
 为了外部可以访问DLL内部的方法，必须要告知编译器去导出固定的符号。但是首先要解决C++的名字修饰（译者注：又称名字重整）问题。
 
-（译者注：为了便于C编译器编译成目标代码，必须对相同的函数名进行修饰。
+（`译者注`：为了便于C编译器编译成目标代码，必须对相同的函数名进行修饰。
 
 例如把
 
@@ -261,7 +249,7 @@ int __stdcall GetSphereSAandVol(doublt radius, double* sa, double* vol)
 
 ### 第五步：构建DLL
 
-当完成以上编码之后，声明了导出的函数，设定了调用约定，就可以构建DLL了。选择你的工程进行编译，链接DLL。现在就可以在LabVIEW中使用或者debug你的DLL文件了。附件```EasyDLL.zip```包括了用于创建这个DLL的工作空间和访问DLL的LabVIEW VI。（译者注：附件请点击最后的原文链接进行下载）
+当完成以上编码之后，声明了导出的函数，设定了调用约定，就可以构建DLL了。选择你的工程进行编译，链接DLL。现在就可以在LabVIEW中使用或者debug你的DLL文件了。附件```EasyDLL.zip```包括了用于创建这个DLL的工作空间和访问DLL的LabVIEW VI。（`译者注`：附件请点击最后的原文链接进行下载）
 
 
 
