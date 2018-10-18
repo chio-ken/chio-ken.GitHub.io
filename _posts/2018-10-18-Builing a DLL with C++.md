@@ -22,7 +22,7 @@ tags:
 
 Microsoft Visual C++ （MSVC）这个IDE，一些初学者用起来会比较棘手，这篇文章就是为了帮助那些想要编译DLL文件以供LabVIEW使用的人。
 
-##### 注意：此文档的IDE为MSVC 2010
+`注意`：此文档的IDE为MSVC 2010
 
 
 
