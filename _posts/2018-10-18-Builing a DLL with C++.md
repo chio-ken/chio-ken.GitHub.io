@@ -90,32 +90,28 @@ BOOL WINAPI DllMain(
 
 DllMain方法完善之后就需要写其他的文件了。
 
-```
+```C++
 //Function declarations
 int GetSphereSAandVol(double radius, double* sa, double* vol);
 double GetSA(double radius);
 double GetVol(double radius);
-
 ...
-
 int GetSphereSAandVol(double radius, double* sa, double* vol)
 //Calculate the surface area and volume of a sphere with given radius
 {
-    if(radius < 0)
-    return false; //return false (0) if radius is negative
-        *sa = GetSA(radius);
-        *vol = GetVol(radius);
-        return true;
+	if(radius < 0)
+		return false; //return false (0) if radius is negative
+			*sa = GetSA(radius);
+			*vol = GetVol(radius);
+			return true;
 }
-
 double GetSA(double radius)
 {
-    return 4 * M_PI * radius * radius;
+	return 4 * M_PI * radius * radius;
 }
-
 double GetVol(double radius)
 {
-    return 4.0/3.0 * M_PI * pow(radius, 3.0);
+	return 4.0/3.0 * M_PI * pow(radius, 3.0);
 }
 ```
 
@@ -124,7 +120,7 @@ double GetVol(double radius)
 声明的方法如下，在`.cpp`文件的顶部插入以下代码：
 
 ```C++
-#include "stdafx.h"
+include "stdafx.h"
 #include "math.h"    //library that defines the pow function
 #define M_PI 3.14159 //declare our M_PI constant
 ```
@@ -178,7 +174,6 @@ __declspec(dllexport) int GetSphereSAandVol(double radius, double* sa, double* v
 {
      ...
 }
-
 ```
 
 第二种就是用一个```.def```文件明确声明导出哪个函数。这个文件包含了链接器决定导出哪些内容的信息。格式如下：
